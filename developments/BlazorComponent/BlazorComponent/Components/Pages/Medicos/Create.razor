@@ -1,0 +1,52 @@
+﻿@page "/medicos/create"
+@rendermode InteractiveServer
+@inject NavigationManager navigation
+
+<CustomHeader>
+    Cadstro de Médicos
+</CustomHeader>
+
+<EditForm Model="Model" OnInvalidSubmit="OnInvalidSubmit" OnValidSubmit="OnValidSubmit">
+
+    <DataAnnotationsValidator />
+
+    @* <ValidationSummary/> *@
+
+    <div class="mb-3">
+        <label for="Nome" class="form-label">Nome</label>
+        <InputText @bind-Value="Model.Nome" class="form-control" />
+        <ValidationMessage For="()=> Model.Nome" />
+    </div>
+
+    <div class="mb-3">
+        <label for="Crm" class="form-label">CRM</label>
+        <InputText @bind-Value="Model.Crm" class="form-control" />
+        <ValidationMessage For="()=> Model.Crm" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">SALVAR</button>
+
+</EditForm>
+
+@code {
+    public Medico Model { get; set; } = new();
+
+    // public void OnSubmit(EditContext editContext)
+    // {
+    //     var context = editContext;
+    // }
+
+    public void OnInvalidSubmit(EditContext editContext)
+    {
+        var context = editContext;
+    }
+
+    public void OnValidSubmit(EditContext editContext)
+    {
+        var context = editContext;
+
+        navigation.NavigateTo("/medicos");
+    }
+
+
+}
